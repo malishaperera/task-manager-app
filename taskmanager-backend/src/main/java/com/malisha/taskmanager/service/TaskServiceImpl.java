@@ -62,6 +62,7 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskDTO> getAllTasks() {
 
         List<Task> tasks = taskRepository.findAll();
+        System.out.println("Retrieved " + tasks+ " tasks from the database.");
         return mapping.convertToTaskDTOList(tasks);
     }
 }
