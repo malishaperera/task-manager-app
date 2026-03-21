@@ -14,7 +14,18 @@ export class TaskService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
-  addTask(task: any) {
-    return this.http.post(this.baseUrl, task);
+  createTask(task: { title: string; description: string; status: string }) {
+    return this.http.post<any>(this.baseUrl, task);
+  }
+
+  deleteTask(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  // updateTask(id: number, task: any) {
+  //   return this.http.put(`${this.baseUrl}/${id}`, task);
+  // }
+  updateTask(id: number, task: { title: string; description: string; status: string }) {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, task);
   }
 }

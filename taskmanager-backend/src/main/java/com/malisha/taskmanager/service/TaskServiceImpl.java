@@ -8,11 +8,13 @@ import com.malisha.taskmanager.utill.Mapping;
 import lombok.RequiredArgsConstructor;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
@@ -32,6 +34,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateTask(TaskDTO taskDTO, Long id) {
+        System.out.println("Updating task with id: " + id + " and data: " + taskDTO);
         Task existingTask = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
 
