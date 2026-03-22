@@ -1,8 +1,22 @@
-<div class="flex h-screen">
-  <app-sidebar class="w-64"></app-sidebar>
+<!--<div class="flex h-screen">-->
+<!--  <app-sidebar class="w-64"></app-sidebar>-->
 
-  <div class="flex-1 p-6 bg-gray-100">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-  </div>
+<!--  <div class="flex-1 p-6 bg-gray-100">-->
+<!--    <app-navbar></app-navbar>-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div *ngIf="isLoginPage(); else mainLayout">
+  <router-outlet></router-outlet>
 </div>
+
+<ng-template #mainLayout>
+  <div class="flex h-screen">
+    <app-sidebar class="w-64"></app-sidebar>
+    <div class="flex-1 p-6 bg-gray-100">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>

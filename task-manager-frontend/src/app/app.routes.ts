@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { AddTask } from './pages/add-task/add-task';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
-  { path: '', component: Dashboard },
+  { path: '', component: Login },
+  { path: 'dashboard', component: Dashboard },
   { path: 'add-task', component: AddTask },
   {
     path: 'edit-task/:id',

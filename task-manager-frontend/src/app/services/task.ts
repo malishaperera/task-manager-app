@@ -32,4 +32,11 @@ export class TaskService {
   updateTask(id: number, task: { title: string; description: string; status: string }) {
     return this.http.put<any>(`${this.baseUrl}/${id}`, task);
   }
+
+  updateStatus(id: number, status: string) {
+    return this.http.patch<any>(
+      `${this.baseUrl}/${id}/status?status=${status}`,
+      {}
+    );
+  }
 }
