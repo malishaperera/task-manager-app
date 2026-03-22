@@ -1,63 +1,49 @@
-<!-- Add Task Form -->
-<div class="form-card">
-  <h3>Add New Task</h3>
+<div class="flex h-screen bg-gray-100">
 
-  <div *ngIf="successMessage" class="msg success">{{ successMessage }}</div>
-  <div *ngIf="errorMessage"   class="msg error">{{ errorMessage }}</div>
+  <!-- Sidebar -->
+  <div class="w-64 bg-white shadow-md p-5">
+    <h2 class="text-xl font-bold mb-6">Task Manager</h2>
 
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <ul class="space-y-3">
+      <li class="text-gray-700 font-medium">Dashboard</li>
+      <li class="text-gray-500">Add Task</li>
+    </ul>
+  </div>
 
-    <div class="field">
-      <label>Title</label>
-      <input formControlName="title" placeholder="Enter task title" />
-      <span class="err" *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
-        Title is required
-      </span>
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <p class="text-gray-500 text-sm">Manage and track your tasks</p>
+      </div>
+
+      <button class="bg-black text-white px-4 py-2 rounded-lg">
+        + Add Task
+      </button>
     </div>
 
-    <div class="field">
-      <label>Description</label>
-      <textarea formControlName="description" placeholder="Enter description" rows="3"></textarea>
-      <span class="err" *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched">
-        Description is required
-      </span>
-    </div>
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
 
-    <div class="field">
-      <label>Status</label>
-      <select formControlName="status">
-        <option value="PENDING">Pending</option>
-        <option value="IN_PROGRESS">In Progress</option>
-        <option value="COMPLETED">Completed</option>
-        <option value="CANCELLED">Cancelled</option>
-      </select>
-    </div>
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-gray-500 text-sm">Total Tasks</p>
+        <h2 class="text-xl font-bold">5</h2>
+      </div>
 
-    <button type="submit" [disabled]="taskForm.invalid || isSubmitting">
-      {{ isSubmitting ? 'Adding...' : 'Add Task' }}
-    </button>
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-gray-500 text-sm">In Progress</p>
+        <h2 class="text-xl font-bold">2</h2>
+      </div>
 
-  </form>
-</div>
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-gray-500 text-sm">Completed</p>
+        <h2 class="text-xl font-bold">1</h2>
+      </div>
 
-<!-- Task List -->
-<div class="list-card">
-  <h3>Task List</h3>
-
-  <div *ngIf="tasks.length > 0; else noData">
-    <div class="task-item" *ngFor="let task of tasks">
-      <span class="task-title">{{ task.title }}</span>
-      <span class="badge" [ngClass]="task.status.toLowerCase().replace('_', '-')">
-        {{ task.status }}
-      </span>
-      <button (click)="updateStatus(task)">Change Status</button>
-      <button (click)="deleteTask(task.id)">Delete</button>
     </div>
 
   </div>
-
-  <ng-template #noData>
-    <p class="empty">No tasks yet. Add one above!</p>
-  </ng-template>
 </div>
-<h1 class="text-red-500 text-3xl">Test</h1>
