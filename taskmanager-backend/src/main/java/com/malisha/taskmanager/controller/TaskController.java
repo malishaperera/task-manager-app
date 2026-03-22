@@ -1,6 +1,7 @@
 package com.malisha.taskmanager.controller;
 
 import com.malisha.taskmanager.dto.TaskDTO;
+import com.malisha.taskmanager.entity.Task;
 import com.malisha.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,13 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
+    }
+
+    @PatchMapping("/{id}/status")
+    public Task updateStatus(@PathVariable Long id,
+                             @RequestParam String status) {
+
+        return taskService.updateStatus(id, status);
     }
 
 

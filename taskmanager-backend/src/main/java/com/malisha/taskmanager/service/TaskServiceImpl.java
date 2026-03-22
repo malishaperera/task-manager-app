@@ -2,6 +2,7 @@ package com.malisha.taskmanager.service;
 
 import com.malisha.taskmanager.dto.TaskDTO;
 import com.malisha.taskmanager.entity.Task;
+import com.malisha.taskmanager.entity.enums.Status;
 import com.malisha.taskmanager.exception.TaskNotFoundException;
 import com.malisha.taskmanager.repository.TaskRepository;
 import com.malisha.taskmanager.utill.Mapping;
@@ -69,5 +70,16 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findAll();
         System.out.println("Retrieved " + tasks+ " tasks from the database.");
         return mapping.convertToTaskDTOList(tasks);
+    }
+
+    @Override
+    public Task updateStatus(Long id, String status) {
+
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        task.setStatus(Status.valueOf(status));
+
+        return taskRepository.save(task);
     }
 }
