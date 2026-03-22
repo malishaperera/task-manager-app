@@ -40,4 +40,7 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+    public String extractRole(String token) {
+        return getClaims(token).get("role", String.class);
+    }
 }

@@ -1,5 +1,6 @@
 package com.malisha.taskmanager.controller;
 
+import com.malisha.taskmanager.entity.enums.Role;
 import com.malisha.taskmanager.utill.Mapping;
 import com.malisha.taskmanager.dto.LoginRequest;
 import com.malisha.taskmanager.dto.UserDTO;
@@ -52,6 +53,7 @@ public class AuthController {
     public UserDTO register(@RequestBody User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.USER);
         User savedUser = userRepository.save(user);
 
         return mapping.convertToUserDTO(savedUser);
