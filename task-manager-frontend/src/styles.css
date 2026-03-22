@@ -7,3 +7,17 @@
 /*body {*/
 /*  background-color: red;*/
 /*}*/
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
+/*#root {*/
+/*  overflow-x: hidden;*/
+/*}*/

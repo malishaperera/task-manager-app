@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../services/task';
+import { Navbar } from '../../components/navbar/navbar';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink,Navbar],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -23,6 +24,10 @@ export class Dashboard implements OnInit {
   completedCount = computed(() =>
     this.tasks().filter(t => t.status === 'COMPLETED').length
   );
+
+  get cancelledCount() {
+    return this.tasks().filter(t => t.status === 'CANCELLED').length;
+  }
 
   constructor(private taskService: TaskService) {}
 

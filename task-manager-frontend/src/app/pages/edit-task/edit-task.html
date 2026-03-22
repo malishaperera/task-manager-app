@@ -1,0 +1,97 @@
+<div class="max-w-2xl mx-auto mt-10">
+  <a routerLink="/" class="text-sm text-gray-500 hover:underline mb-4 inline-block">
+    ← Back to Dashboard
+  </a>
+
+  <!-- Card -->
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+
+    <!-- Title -->
+    <h2 class="text-xl font-semibold mb-1">Edit Task</h2>
+    <p class="text-sm text-gray-500 mb-6">
+      Update the details and current progress of your task.
+    </p>
+
+
+    <!-- Title Field -->
+    <div class="mb-4">
+      <label class="text-sm font-medium text-gray-700 block mb-1">
+        Task Title *
+      </label>
+      <input
+        [(ngModel)]="task.title"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-4">
+      <label class="text-sm font-medium text-gray-700 block mb-1">
+        Description
+      </label>
+      <textarea
+        rows="4"
+        [(ngModel)]="task.description"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
+      ></textarea>
+      <p class="text-xs text-gray-400 mt-1">
+        Markdown is supported for formatting.
+      </p>
+    </div>
+
+    <!-- Status -->
+    <div class="mb-6">
+      <label class="text-sm font-medium text-gray-700 block mb-1">
+        Status
+      </label>
+      <select
+        [(ngModel)]="task.status"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-black focus:outline-none"
+      >
+        <option>PENDING</option>
+        <option>IN_PROGRESS</option>
+        <option>COMPLETED</option>
+        <option>CANCELLED</option>
+      </select>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-end gap-3">
+
+      <button
+        class="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        Cancel
+      </button>
+
+      <button
+        (click)="updateTask()"
+        class="px-4 py-2 text-sm bg-black text-white rounded-lg hover:bg-gray-800"
+      >
+        Update Task
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom Tips -->
+<!--  <div class="grid grid-cols-2 gap-4 mt-2">-->
+
+<!--    <div class="border border-gray-200 rounded-xl p-4">-->
+<!--      <p class="text-sm font-medium mb-1">💡 Quick Tip</p>-->
+<!--      <p class="text-xs text-gray-500">-->
+<!--        Use meaningful titles to help your team understand tasks quickly.-->
+<!--      </p>-->
+<!--    </div>-->
+
+<!--    <div class="border border-gray-200 rounded-xl p-4">-->
+<!--      <p class="text-sm font-medium mb-1">📊 Status Tracking</p>-->
+<!--      <p class="text-xs text-gray-500">-->
+<!--        Keep your task status updated to reflect project progress accurately.-->
+<!--      </p>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+</div>

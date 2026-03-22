@@ -58,6 +58,8 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id));
 
+        System.out.println("Retrieved task: " + task);
+
         return mapping.convertToTaskDTO(task);
     }
 

@@ -1,0 +1,130 @@
+<div class="p-8 bg-gray-100 min-h-screen">
+  <div class="max-w-6xl mx-auto">
+    <!-- Back / Edit Header -->
+    <div class="mb-6 flex items-center justify-between">
+      <a routerLink="/" class="text-sm text-gray-500 hover:underline">
+        ← Back to Dashboard
+      </a>
+
+      <a
+        [routerLink]="['/edit-task', task()?.id]"
+        class="text-sm bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+      >
+        ✏️ Edit Task
+      </a>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="!task()" class="text-center py-20 text-gray-400 text-sm">
+      Loading task...
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="task()">
+
+      <!-- GRID -->
+      <div class="grid grid-cols-3 gap-6">
+
+        <!-- LEFT MAIN -->
+        <div class="col-span-2 bg-white rounded-2xl shadow-sm border p-6">
+
+          <!-- TAGS -->
+          <div class="flex gap-2 mb-3">
+            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">
+              Backend
+            </span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+              High Priority
+            </span>
+          </div>
+
+          <!-- TITLE -->
+          <h1 class="text-2xl font-semibold text-gray-800 mb-4">
+            {{ task()?.title }}
+          </h1>
+
+          <!-- DESCRIPTION -->
+          <div class="bg-gray-50 border rounded-xl p-4 text-sm text-gray-600 leading-relaxed">
+            {{ task()?.description }}
+          </div>
+
+          <!-- FOOTER -->
+          <div class="flex justify-between items-center mt-6 text-sm text-gray-400">
+            <span>⏱ Last updated recently</span>
+            <button class="text-red-500 hover:underline">🗑 Archive Task</button>
+          </div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="bg-white rounded-2xl shadow-sm border p-5">
+
+          <h3 class="text-sm font-semibold text-gray-700 mb-4">Task Properties</h3>
+
+          <!-- STATUS -->
+          <div class="mb-4">
+            <p class="text-xs text-gray-400 mb-1">STATUS</p>
+            <span
+              class="px-3 py-1 rounded-full text-xs font-medium"
+              [ngClass]="{
+                'bg-gray-100 text-gray-600':     task()?.status === 'PENDING',
+                'bg-yellow-100 text-yellow-700': task()?.status === 'IN_PROGRESS',
+                'bg-green-100 text-green-700':   task()?.status === 'COMPLETED',
+                'bg-red-100 text-red-700':       task()?.status === 'CANCELLED'
+              }"
+            >
+              {{ task()?.status }}
+            </span>
+          </div>
+
+          <!-- CREATED DATE -->
+          <div class="mb-4">
+            <p class="text-xs text-gray-400 mb-1">CREATED DATE</p>
+            <p class="text-sm text-gray-700 font-medium">
+              {{ task()?.createdAt | date:'mediumDate' }}
+            </p>
+          </div>
+
+          <!-- ASSIGNEE -->
+          <div class="mb-4">
+            <p class="text-xs text-gray-400 mb-1">ASSIGNEE</p>
+            <div class="flex items-center gap-2 mt-2">
+              <img src="https://i.pravatar.cc/40" class="w-8 h-8 rounded-full object-cover" />
+              <span class="text-sm font-medium text-gray-700">Alex Rivers</span>
+            </div>
+          </div>
+
+          <!-- TAGS -->
+          <div class="mb-4">
+            <p class="text-xs text-gray-400 mb-1">TAGS</p>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <span class="text-xs bg-gray-100 px-2 py-1 rounded">API</span>
+              <span class="text-xs bg-gray-100 px-2 py-1 rounded">Security</span>
+              <span class="text-xs bg-gray-100 px-2 py-1 rounded">Node.js</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTTOM CARDS -->
+      <div class="grid grid-cols-2 gap-4 mt-6">
+        <div class="bg-white border rounded-xl p-4">
+          <p class="text-sm font-medium mb-1">💡 Quick Tip</p>
+          <p class="text-xs text-gray-500">
+            Use meaningful titles to help your team understand tasks quickly.
+          </p>
+        </div>
+        <div class="bg-white border rounded-xl p-4">
+          <p class="text-sm font-medium mb-1">📊 Status Tracking</p>
+          <p class="text-xs text-gray-500">
+            Keep your task status updated to reflect project progress accurately.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -14,6 +14,10 @@ export class TaskService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
+  getTaskById(id: number) {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
   createTask(task: { title: string; description: string; status: string }) {
     return this.http.post<any>(this.baseUrl, task);
   }
