@@ -53,7 +53,9 @@ public class AuthController {
     public UserDTO register(@RequestBody User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.USER);
+        if (user.getRole() == null) {
+            user.setRole(Role.USER);
+        }
         User savedUser = userRepository.save(user);
 
         return mapping.convertToUserDTO(savedUser);
